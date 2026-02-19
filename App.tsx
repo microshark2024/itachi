@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Hero from './components/Hero';
 import Abilities from './components/Abilities';
@@ -7,12 +6,12 @@ import Chat from './components/Chat';
 
 const Navbar: React.FC = () => (
   <nav className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5 py-4 px-8 flex justify-between items-center">
-    <div className="text-2xl font-cinzel font-black text-red-600 tracking-tighter">UCHIHA</div>
+    <a href="#home" className="text-2xl font-cinzel font-black text-red-600 tracking-tighter hover:scale-105 transition-transform">UCHIHA</a>
     <div className="hidden md:flex gap-8 text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">
-      <a href="#" className="hover:text-white transition-colors">主页</a>
-      <a href="#abilities" className="hover:text-white transition-colors">能力</a>
-      <a href="#timeline" className="hover:text-white transition-colors">生平</a>
-      <a href="#philosophy" className="hover:text-white transition-colors">哲学</a>
+      <a href="#home" className="nav-link hover:text-white transition-colors">主页</a>
+      <a href="#abilities" className="nav-link hover:text-white transition-colors">能力</a>
+      <a href="#timeline" className="nav-link hover:text-white transition-colors">生平</a>
+      <a href="#philosophy" className="nav-link hover:text-white transition-colors">哲学</a>
     </div>
   </nav>
 );
@@ -20,7 +19,6 @@ const Navbar: React.FC = () => (
 const Footer: React.FC = () => (
   <footer className="py-12 bg-black border-t border-white/5 text-center">
     <div className="mb-6 opacity-30 invert inline-block">
-       {/* Small Leaf/Uchiha Crest placeholder */}
        <div className="w-12 h-12 border-4 border-red-600 rounded-full flex items-center justify-center">
          <div className="w-6 h-6 bg-red-600 rounded-t-full"></div>
        </div>
