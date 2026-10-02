@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
 
 const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -9,15 +8,11 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
     let mounted = true;
 
     supabase.auth.getUser().then(({ data }) => {
-      if (mounted) {
-        setStatus(data.user ? 'authenticated' : 'unauthenticated');
-      }
+      if (mounted) setStatus(data.user ? 'authenticated' : 'unauthenticated');
     });
 
     const { data } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (mounted) {
-        setStatus(session?.user ? 'authenticated' : 'unauthenticated');
-      }
+      if (mounted) setStatus(session?.user ? 'authenticated' : 'unauthenticated');
     });
 
     return () => {
@@ -35,7 +30,8 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
   }
 
   if (status === 'unauthenticated') {
-    return <Navigate to="/login" replace />;
+    window.location.replace('/login');
+    return null;
   }
 
   return <>{children}</>;
