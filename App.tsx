@@ -1,10 +1,17 @@
 import React from 'react';
+import { supabase } from './lib/supabase';
 import Hero from './components/Hero';
 import Abilities from './components/Abilities';
 import Timeline from './components/Timeline';
 import Chat from './components/Chat';
 
-const Navbar: React.FC = () => (
+const Navbar: React.FC = () => {
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    window.location.assign('/login');
+  };
+
+  return (
   <nav className="fixed top-0 left-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5 py-4 px-8 flex justify-between items-center">
     <a href="#home" className="text-2xl font-cinzel font-black text-red-600 tracking-tighter hover:scale-105 transition-transform">UCHIHA</a>
     <div className="hidden md:flex gap-8 text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">
@@ -13,8 +20,16 @@ const Navbar: React.FC = () => (
       <a href="#timeline" className="nav-link hover:text-white transition-colors">生平</a>
       <a href="#philosophy" className="nav-link hover:text-white transition-colors">哲学</a>
     </div>
+    <button
+      type="button"
+      onClick={signOut}
+      className="text-[10px] font-bold tracking-[0.2em] text-gray-500 hover:text-red-500 uppercase transition-colors"
+    >
+      退出
+    </button>
   </nav>
-);
+  );
+};
 
 const Footer: React.FC = () => (
   <footer className="py-12 bg-black border-t border-white/5 text-center">
